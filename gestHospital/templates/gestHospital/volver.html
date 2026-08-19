@@ -1,0 +1,7 @@
+<div class="container" style="text-align: center;">
+    {% if url_volver %}
+        <a class="btn btn-secondary" href="{{url_volver}}" role="button">Volver</a>
+    {% else %}
+        <a class="btn btn-secondary" href="{% url 'gestHospital-bienvenida' %}" role="button">Volver</a>
+    {% endif %}
+    </div>

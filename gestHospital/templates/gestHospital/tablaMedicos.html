@@ -1,0 +1,50 @@
+{% load static %}
+<div class="d-flex justify-content-center">
+    <table class="table table-striped w-50">
+        <thead>
+            <tr>
+                <th scope="col">Número de colegiado</th>
+                <th scope="col">Especialidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medico in medicos %}
+            <tr>
+                <th scope="row">{{medico.numColegiado}}</th>
+                <td>{{medico.especialidad}}</td>
+                <td>
+                    <!-- Modal borrar -->
+                    <div class="modal fade" id="{{medico.numColegiado}}" tabindex="-1"
+                        aria-labelledby="{{medico.numColegiado}}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="{{medico.numColegiado}}Label">Eliminar médico</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Se va a eliminar el médico con número de colegiado {{medico.numColegiado}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <a href="{% url 'gestHospital-e-medico' medico.numColegiado%}"
+                                        class="btn btn-primary">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#{{medico.numColegiado}}" data-bs-toggle="modal" data-bs-target="#{{medico.numColegiado}}"><img
+                            src="{% static gestHospital_icono_borrar%}" width="12"
+                            title="Eliminar {{medico.numColegiado}}"></a>
+                    <a href="{% url 'gestHospital-b-f-medico' medico.numColegiado %}"><img
+                                src=" {% static gestHospital_icono_reservar%}" width="12"
+                                title="Gestionar ingresos tratados por {{medico.numColegiado }}"></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

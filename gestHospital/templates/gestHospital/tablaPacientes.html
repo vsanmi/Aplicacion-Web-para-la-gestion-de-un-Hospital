@@ -1,0 +1,60 @@
+{% load static %}
+<div class="d-flex justify-content-center">
+    <table class="table table-striped w-50">
+        <thead>
+            <tr>
+                <th scope="col">Identificador de Paciente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Sexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in lista %}
+            <tr>
+                <th scope="row">{{paciente.numID}}</th>
+                <td>
+                    {{paciente.nombre}}
+                </td>
+                <td>
+                    {{paciente.apellidos}}
+                </td>
+                <td>
+                    {{paciente.sexo}}
+                </td>
+                <td>
+
+                    <!-- Modal borrar -->
+                    <div class="modal fade" id="{{paciente.numID}}" tabindex="-1"
+                        aria-labelledby="{{paciente.numID}}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="mo  dal-header">
+                                    <h1 class="modal-title fs-5" id="{{paciente.numID}}Label">Eliminar paciente</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Se va a eliminar el paciente con identificador {{paciente.numID}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <a href="{% url 'gestHospital-e-paciente' paciente.numID%}"
+                                        class="btn btn-primary">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#{{paciente.numID}}" data-bs-toggle="modal" data-bs-target="#{{paciente.numID}}"><img
+                            src="{% static gestHospital_icono_borrar%}" width="12"
+                            title="Eliminar {{paciente.numID}}"></a>
+                    <a href="{% url 'gestHospital-v-paciente' paciente.numID %}"><img src="{% static gestHospital_icono_mas%}"
+                            width="12" title="Ver detalle de {{paciente.numID }}"></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

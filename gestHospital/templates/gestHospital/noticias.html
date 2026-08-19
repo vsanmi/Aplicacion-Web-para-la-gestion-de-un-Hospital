@@ -1,0 +1,43 @@
+{% extends gestHospital_base_html %}
+
+{% block titulo %}
+<title>Hospital de Barataria - Noticias</title>
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Noticias sobre salud.</h1>
+<p class="lead"><strong>Los pacientes cardiovasculares promueven el primer debate sanitario pre-electoral en la Comunidad de Madrid</strong></p>
+<p class="lead">
+    <strong>Cardioalianza</strong>&nbsp;ha presentado en CaixaForum Madrid el documento&nbsp;<strong>Las enfermedades cardiovasculares en la 
+    Comunidad de Madrid: Propuestas de prioridades en la mejora de la prevenci&oacute;n y la atenci&oacute;n sanitaria.</strong>&nbsp; 
+    Esta entidad agrupa en España a m&aacute;s de 50 organizaciones de pacientes con enfermedad cardiovascular, 
+    ha participado activamente en la definici&oacute;n de la Estrategia de Salud Cardiovascular (ESCAV), 
+    aprobada en abril de 2022 por el Consejo Interterritorial del Sistema Nacional de Salud. 
+    En l&iacute;nea con la ESCAV, el documento presentado en la Comunidad de Madrid&nbsp;<em>impulsa la prevenci&oacute;n de los 
+    factores de riesgo desde una visi&oacute;n integral, la mejora del proceso asistencial y el empoderamiento 
+    de la ciudadan&iacute;a hacia el cuidado de su propia salud”</em>&nbsp;, como ha destacado&nbsp;<strong>Maite San Saturnino</strong>&nbsp;, 
+    presidenta de Cardioalianza. <a href="#"><em>Ver más...</em></a>
+</p>
+<p class="lead" id="oculto">
+    As&iacute;, este informe es una llamada a la acci&oacute;n para mejorar la atenci&oacute;n cardiovascular y para poner a 
+    las enfermedades cardiovasculares, en adelante ECV, como una prioridad en la agenda pol&iacute;tica de la 
+    Comunidad de Madrid, con programas concretos de promoci&oacute;n de la salud y prevenci&oacute;n en &aacute;reas como la 
+    lucha contra la obesidad, el tabaquismo, la hipercolesterolemia o la hipertensi&oacute;n. En concreto, uno 
+    de los mayores problemas de salud p&uacute;blica es, en la actualidad, el aumento de los factores de riesgo 
+    de ECV en la poblaci&oacute;n, que es especialmente preocupante entre la poblaci&oacute;n infantil y adolescente, 
+    pues uno de cada 4 niños de la Comunidad presenta sobrepeso y el 13% obesidad;&nbsp;<em>«una pandemia que 
+    tenemos que frenar para evitar que mañana sean pacientes cardiovasculares»</em>, como han señalado los 
+    distintos profesionales sanitarios que han participado en la mesa.
+</p>
+<p class="lead"><a href="#">Ver noticia completa.</a></p>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#oculto").hide();
+      $("a").click(function(){
+        $("#oculto").toggle();
+      });
+    });
+    </script>
+{% endblock %}

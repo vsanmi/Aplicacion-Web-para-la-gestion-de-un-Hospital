@@ -1,0 +1,22 @@
+{% extends gestHospital_base_html %}
+
+{% load static %}
+
+{% block contenido %}
+{% if paciente %}
+<h1> Información del paciente {{paciente.nombre}} ({{paciente.apellidos}}).</h1>
+<h2>Pacientes</h2>
+{%if paciente.ingreso_set.all|length > 0 %}
+{% include gestHospital_tabla_ingreso with ingresos=paciente.ingreso_set.all %}
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No hay ingresos para este paciente.
+</div>
+{% endif %}
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No se ha encontrado el paciente solicitado.
+</div>
+{% endif%}
+{% include gestHospital_volver %}
+{% endblock %}

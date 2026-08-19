@@ -1,0 +1,50 @@
+{% extends gestHospital_base_html %}
+
+{% block contenido %}
+<h1 style="margin-bottom: 30px;"> Registro de un nuevo médico.</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger" role="alert">
+    {{errorMsg}}. Por favor, vuelva a intentarlo
+</div>
+{% endif %}
+
+<form action="{% url 'gestHospital-r-f-medico'%}" method="POST">
+    {% csrf_token %}
+    {{ formulario.non_field_errors }}
+    <div class="container" style="margin-left: 20px;">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Número de colegiado.</div>
+                    <label class="form-label" for="{{ formulario.numColegiado.id_for_label }}">Número de colegiado:</label>
+                    {{ formulario.numColegiado }}
+                    <div class="form-text">{{formulario.numColegiado.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Especialidad.</div>
+                    <label class="form-label" for="{{ formulario.especialidad.id_for_label }}">Especialidad:</label>
+                    {{ formulario.especialidad }}
+                    <div class="form-text">{{formulario.especialidad.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Contraseña.</div>
+                    <label class="form-label" for="{{ formulario.password.id_for_label }}">Contraseña:</label>
+                    {{ formulario.password }}
+                    <div class="form-text">{{formulario.password.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Registrar Médico</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% include gestHospital_volver %}
+{% endblock %}

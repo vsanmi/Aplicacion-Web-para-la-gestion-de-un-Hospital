@@ -1,0 +1,60 @@
+{% extends gestHospital_base_html %}
+
+{% block contenido %}
+<h1 style="margin-bottom: 30px;"> Registro de un nuevo paciente.</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger" role="alert">
+    {{errorMsg}}. Por favor, vuelva a intentarlo
+</div>
+{% endif %}
+
+<form action="{% url 'gestHospital-r-f-paciente'%}" method="POST">
+    {% csrf_token %}
+    {{ formulario.non_field_errors }}
+    <div class="container" style="margin-left: 20px;">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Nombre del paciente.</div>
+                    <label class="form-label" for="{{ formulario.nombre.id_for_label }}">Nombre del paciente:</label>
+                    {{ formulario.nombre }}
+                    <div class="form-text">{{formulario.nombre.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Apellidos del paciente.</div>
+                    <label class="form-label" for="{{ formulario.apellidos.id_for_label }}">Apellidos del paciente:</label>
+                    {{ formulario.apellidos }}
+                    <div class="form-text">{{formulario.apellidos.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Número de la Seguridad Social / NIF / NIE (PONER LETRA PRIMERO).</div>
+                    <label class="form-label" for="{{ formulario.numID.id_for_label }}">Número de la Seguridad Social / NIF / NIE:</label>
+                    {{ formulario.numID }}
+                    <div class="form-text">{{formulario.numID.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Sexo.</div>
+                    <label class="form-label" for="{{ formulario.sexo.id_for_label }}">Sexo:</label>
+                    {{ formulario.sexo }}
+                    <div class="form-text">{{formulario.sexo.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% include gestHospital_volver %}
+{% endblock %}

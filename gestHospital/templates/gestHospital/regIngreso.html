@@ -1,0 +1,78 @@
+{% extends gestHospital_base_html %}
+
+{% block contenido %}
+<h1 style="margin-bottom: 30px;"> Registro de un nuevo ingreso.</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger" role="alert">
+    {{errorMsg}}. Por favor, vuelva a intentarlo
+</div>
+{% endif %}
+
+<form action="{% url 'gestHospital-r-f-ingreso'%}" method="POST">
+    {% csrf_token %}
+    {{ formulario.non_field_errors }}
+    <div class="container" style="margin-left: 20px;">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Indentificador único del ingreso.</div>
+                    <label class="form-label" for="{{ formulario.id.id_for_label }}">Indentificador ingreso:</label>
+                    {{ formulario.id }}
+                    <div class="form-text">{{formulario.id.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Paciente.</div>
+                    <label class="form-label" for="{{ formulario.paciente.id_for_label }}">Paciente:</label>
+                    {{ formulario.paciente }}
+                    <div class="form-text">{{formulario.paciente.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Edad del paciente en el momento del ingreso.</div>
+                    <label class="form-label" for="{{ formulario.edad.id_for_label }}">Edad del paciente en el momento del ingreso:</label>
+                    {{ formulario.edad }}
+                    <div class="form-text">{{formulario.edad.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Fecha de ingreso.</div>
+                    <label class="form-label" for="{{ formulario.fechaIngreso.id_for_label }}">Fecha de ingreso:</label>
+                    {{ formulario.fechaIngreso }}
+                    <div class="form-text">{{formulario.fechaIngreso.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Fecha de alta.</div>
+                    <label class="form-label" for="{{ formulario.fechaAlta.id_for_label }}">Fecha de alta:</label>
+                    {{ formulario.fechaAlta }}
+                    <div class="form-text">{{formulario.fechaAlta.errors}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Descripción de la enfermedad del paciente.</div>
+                    <label class="form-label" for="{{ formulario.descripcion.id_for_label }}">Descripción de la enfermedad del paciente:</label>
+                    {{ formulario.descripcion }}
+                    <div class="form-text">{{formulario.descripcion.errors}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Registrar Ingreso</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% include gestHospital_volver %}
+{% endblock %}

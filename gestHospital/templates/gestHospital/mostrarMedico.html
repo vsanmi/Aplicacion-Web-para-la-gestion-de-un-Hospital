@@ -1,0 +1,23 @@
+{% extends gestHospital_base_html %}
+
+{% load static %}
+
+{% block contenido %}
+{% if medico %}
+<h1> Información del médico {{medico.numColegiado}} ({{medico.especialidad}}).</h1>
+<h2>Ingresos que ha reservado el médico</h2>
+{%if medico.ingresos.all|length > 0 %}
+{% include gestHospital_tabla_ingreso with lista=medico.ingresos.all %}
+{% else %}
+<div class="alert alert-warning" role="alert">
+    Ningún ingreso ha sido reservado aún por el médico
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No se ha encontrado el médico solicitado.
+</div>
+{% endif%}
+{% include gestHospital_volver %}
+{% endblock %}

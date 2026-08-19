@@ -1,0 +1,17 @@
+{% extends gestHospital_base_html %}
+
+{% block contenido %}
+<h1 style="margin-bottom: 30px;"> {{texto_op}}.</h1>
+
+{% if errorMsg %}
+<div class="alert alert-danger" role="alert">
+    {{errorMsg}}.
+</div>
+{% endif %}
+{% if texto %}
+<div class="alert alert-success" role="alert">
+    {{texto}}.
+</div>
+{% endif %}
+{% include gestHospital_volver %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends gestHospital_base_html %}
+
+{% block contenido %}
+<h1 style="margin-bottom: 30px;"> Modificar ingreso.</h1>
+
+{% if ingreso %}
+<h2> Ingreso {{ingreso.paciente.nombre}} {{ingreso.paciente.apellidos}}</h2>
+{% if errorMsg %}
+<div class="alert alert-danger" role="alert">
+    {{errorMsg}}. Por favor, vuelva a intentarlo
+</div>
+{% endif %}
+
+<form action="{% url 'gestHospital-m-f-ingreso' ingreso.id %}" method="POST">
+    {% csrf_token %}
+    {{ formulario.non_field_errors }}
+    <div class="container" style="margin-left: 20px;">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <div class="form-text">Ultimo ingreso el&nbsp;{{ingreso.fechaIngreso}}.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <div class="form-text">Fecha de Alta.</div>
+                <label class="form-label" for="{{ formulario.fechaAlta.id_for_label }}">Fecha:</label>
+                {{ formulario.fechaAlta }}
+                <div class="form-text">{{formulario.fechaAlta.errors}}</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <div class="form-text">Descripción de la enfermedad.</div>
+                <label class="form-label" for="{{ formulario.descripcion.id_for_label }}">Descripción:</label>
+                {{ formulario.descripcion }}
+                <div class="form-text">{{formulario.descripcion.errors}}</div>
+            </div>
+        </div>
+        {% if ingreso.fechaAlta == None %}
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Modificar Ingreso</button>
+            </div>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    No se puede modificar un ingreso dado de alta.
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</form>
+{% endif %}
+{% include gestHospital_volver %}
+{% endblock %}
